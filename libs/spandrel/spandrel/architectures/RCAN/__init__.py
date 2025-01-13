@@ -83,6 +83,7 @@ class RCANArch(Architecture[RCAN]):
         unshuffle_mod = is_unshuffle(state_dict)
 
         if unshuffle_mod:
+            scale = 2
             size_requirements = SizeRequirements(multiple_of=2)
         else:
             size_requirements = SizeRequirements(multiple_of=1)

@@ -333,7 +333,3 @@ class RCAN(nn.Module):
         x = self.tail(res)
         x = self.add_mean(x)
         return (x / self.rgb_range)[:, :, : h * self.scale, : w * self.scale]
-
-
-if __name__ == "__main__":
-    model = RCAN()

@@ -41,3 +41,18 @@ def test_2x_AnimeSharpV4_RCAN(snapshot):
         model,
         [TestImage.SR_16, TestImage.SR_32, TestImage.SR_64],
     )
+
+
+def test_2x_AnimeSharpV4_RCAN_PS(snapshot):
+    file = ModelFile.from_url(
+        "https://github.com/Kim2091/Kim2091-Models/releases/download/2x-AnimeSharpV4/2x-AnimeSharpV4_Fast_RCAN_PU.safetensors",
+        name="2x-AnimeSharpV4_Fast_RCAN_PU.safetensors",
+    )
+    model = file.load_model()
+    assert model == snapshot(exclude=disallowed_props)
+    assert isinstance(model.model, RCAN)
+    assert_image_inference(
+        file,
+        model,
+        [TestImage.SR_16, TestImage.SR_32, TestImage.SR_64],
+    )
