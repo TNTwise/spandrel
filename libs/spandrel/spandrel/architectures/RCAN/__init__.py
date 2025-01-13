@@ -32,7 +32,7 @@ def get_n_resblocks(state) -> int:
 
 
 def get_n_reduction(state) -> int:
-    return 64 / state["body.0.body.0.body.3.conv_du.0.weight"].shape[0]
+    return int(64 / state["body.0.body.0.body.3.conv_du.0.weight"].shape[0])
 
 
 def is_unshuffle(state) -> bool:
