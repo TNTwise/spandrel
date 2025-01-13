@@ -1,0 +1,22 @@
+# serializer version: 1
+# name: test_2x_AnimeSharpV4_RCAN
+  ImageModelDescriptor(
+    architecture=RCANArch(
+      id='RCAN',
+      name='RCAN',
+    ),
+    input_channels=3,
+    output_channels=3,
+    purpose='SR',
+    scale=2,
+    size_requirements=SizeRequirements(minimum=0, multiple_of=1, square=False),
+    supports_bfloat16=True,
+    supports_half=True,
+    tags=list([
+      '64dim',
+      '20nb',
+      '3ks',
+    ]),
+    tiling=<ModelTiling.SUPPORTED: 1>,
+  )
+# ---
