@@ -14,6 +14,7 @@ from ..architectures import (
     HAT,
     IPT,
     PLKSR,
+    RCAN,
     RGT,
     SAFMN,
     SAFMNBCIE,
@@ -94,4 +95,5 @@ MAIN_REGISTRY.add(
     ArchSupport.from_architecture(SPANPlus.SPANPlusArch()),
     ArchSupport.from_architecture(Sebica.SebicaArch()),
     ArchSupport.from_architecture(RTMoSR.RTMoSRArch()),
+    ArchSupport.from_architecture(RCAN.RCANArch()),
 )
