@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing_extensions import override
 
-from spandrel.util import KeyCondition, get_seq_len
+from spandrel.util import KeyCondition, get_pixelshuffle_params, get_seq_len
 
 from ...__helpers.model_descriptor import (
     Architecture,
@@ -73,7 +73,7 @@ class RCANArch(Architecture[RCAN]):
     def load(self, state_dict: StateDict) -> ImageModelDescriptor[RCAN]:
         in_channels = 3
         out_channels = 3
-        scale = get_scale(state_dict)
+
         n_resblocks = get_n_resblocks(state_dict)
         n_resgroups = get_n_resgroups(state_dict)
         reduction = get_n_reduction(state_dict)
@@ -81,7 +81,7 @@ class RCANArch(Architecture[RCAN]):
         kernel_size = get_kernel_size(state_dict)
         norm = is_norm(state_dict)
         unshuffle_mod = is_unshuffle(state_dict)
-
+        scale, n_feats = get_pixelshuffle_params(state_dict, "tail.0")
         if unshuffle_mod:
             scale = 2
             size_requirements = SizeRequirements(multiple_of=2)
