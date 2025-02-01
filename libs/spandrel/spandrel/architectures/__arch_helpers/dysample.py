@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from .grid_sample_trt_plugin import grid_sample
+
 
 class DySample(nn.Module):
     """Adapted from 'Learning to Upsample by Learning to Sample':
@@ -81,8 +83,9 @@ class DySample(nn.Module):
             .float()
         )
         output = (
-            torch.ops.aten.grid_sampler_2d(
-                x.reshape(B * self.groups, -1, H, W).float(), coords.float(), 0, 1, False
+            grid_sample(
+                x.reshape(B * self.groups, -1, H, W).float(),
+                coords.float(),
             )
             .to(x.dtype)
             .view(B, -1, self.scale * H, self.scale * W)
