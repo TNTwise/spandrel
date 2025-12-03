@@ -49,6 +49,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, Generic, Iterable, Mapping, TypeVar
 
 from torch import Tensor
+from safetensors.torch import load_file
 
 
 
@@ -168,7 +169,10 @@ def main() -> None:
     args = ap.parse_args()
     file = args.file
     print(f"Input file: {file}")
-    state = torch.load(file, map_location='cpu')
+    try:
+        state = torch.load(file, map_location='cpu')
+    except Exception:
+        state = load_file(file, device='cpu')
     dump(state, comment=file, file=args.output)
 
 
